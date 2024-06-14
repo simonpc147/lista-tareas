@@ -5,7 +5,7 @@ import Footer from "./Footer";
 function Title() {
   return (
     <div className="flex justify-around">
-      <Title2 body={"hola"} children={<Body />} children2={<Footer />} />
+      <Title2 body={"holaaa"} children={<Body />} children2={<Footer />} />
     </div>
   );
 }
