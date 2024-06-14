@@ -1,11 +1,34 @@
-function Title(){
+import { ReactNode } from "react";
+import Body from "./Body";
+import Footer from "./Footer";
 
-    const nombre = "SIMITO";
-    return(    
-        <h1 className="flex justify-center items-center w-full h-lvh">
-        {nombre}
+function Title() {
+  return (
+    <div className="flex justify-around">
+      <Title2 body={"hola"} children={<Body />} children2={<Footer />} />
+    </div>
+  );
+}
+
+interface bodyTitle {
+  body: string;
+  children: ReactNode;
+  children2: ReactNode;
+}
+
+function Title2(props: bodyTitle) {
+  const { body } = props;
+  const { children } = props;
+  const { children2 } = props;
+  return (
+    <div>
+      <h1>
+        {body}
+        {children}
+        {children2}
       </h1>
-    )
-  }
-  
-  export default Title;
+    </div>
+  );
+}
+
+export default Title;
