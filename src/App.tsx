@@ -1,9 +1,10 @@
-import Title from "./components/Title";
+import Card from "./components/Card";
 
-function App(){
-
+function App() {
   return (
-      <Title/>
+    <div className="">
+      <Card />
+    </div>
   );
 }
 
