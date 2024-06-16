@@ -1,54 +1,49 @@
+import { useState } from "react";
+
 function Card() {
   const estilo = {
     width: "100%",
   };
 
-  const botones = [
-    "boton",
-    "boton1",
-    "boton2",
-    "boton3",
-    "boton4",
-    "boton5",
-    "boton6",
-    "boton7",
-  ];
-  const prueba : number [] = [1] 
+  const [valor, cambiarValor] = useState(true);  
+  const cambiar = ()=> cambiarValor(!valor); 
 
+  const [Boton, setBoton] = useState(["boton", "boton2", "boton3"])
+  const addButton = () => setBoton([...Boton, "Añadido"]);
+  const delButton = () => setBoton(Boton.slice(0,-1));
   
-
-
+  // let botonSaludo = <button className="border rounded-s w-12 bg-red-300">Hola!</button>;
+  // let botonDespedida = <button disabled={!valor} className="border rounded-s w-12 bg-blue-300">Chao</button>;
   return (
-    <div className="flex justify-around flex-col text-center" style={estilo}>
-      { prueba.length ? <Footer2/> : <Footer/>}
-      <Body botones={botones} />
+    <div className="flex justify-around flex-col text-center" style={estilo} onClick={cambiar}>
+      {/* {  valor ? botonSaludo : botonDespedida} */}
+      <button onClick={addButton}>Agregar Boton</button>
+      <button onClick={delButton}>Eliminar Boton</button>
+      <Body boton={Boton} />
     </div>
   );
 }
 
+
+//CUERPO DE LA FUNCION//
 interface Botones {
-  botones: string[];
+  boton: string[];
 }
 
-function Body({ botones }: Botones) {
-  return botones.map((boton, index) => (
+function Body({ boton }: Botones) {
+  const [Valor, setV] = useState(1);
+  const iterar = (i: number)=> setV(i);
+
+  return boton.map((botonesUno, index) => (
     <button
-      onClick={() => {
-        console.log(index, boton);
-      }}
+      onClick={()=> {iterar(index)}}
+      className={`${index == Valor ? "bg-red-100": ""}`}
       key={index}
     >
-      {boton}
+      {botonesUno}
     </button>
   ));
 }
 
-function Footer() {
-  return <footer>Footer</footer>;
-}
-
-function Footer2() {
-  return <footer>Footer2</footer>;
-}
 
 export default Card;
